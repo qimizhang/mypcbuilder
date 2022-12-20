@@ -1,0 +1,36 @@
+<style>
+  body {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+  }
+</style>
+
+<body onload="saveCookie()">
+  <div id="root">
+  </div>
+<body>
+
+<script>
+  function readToken(){
+    var myUrl = new URL(window.location.href.replace(/#/g,"?"));
+    var accessToken = myUrl.searchParams.get("access_token");
+    console.log(accessToken)
+    return accessToken
+  }
+
+  function readExpire() {
+    var myUrl = new URL(window.location.href.replace(/#/g,"?"));
+    var expireTime = myUrl.searchParams.get("expires_in");
+    console.log(expireTime)
+    return expireTime
+  }
+
+  function saveCookie() {
+    var token = readToken()
+    var expireTime = new Date()
+    expireTime.setTime(new Date().getTime() + parseInt(readExpire()) * 1000)
+    console.log(expireTime)
+    document.cookie = "access-token="+token+"; path=/index.html; expires="+expireTime.toUTCString()+";"
+    document.cookie = "login-time="+new Date().getTime()+"; path=/index.html; expires="+expireTime.toUTCString()+";"
+    window.location.href = "/index.html"
+  }
+</script>
