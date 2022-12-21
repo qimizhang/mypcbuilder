@@ -262,7 +262,7 @@ function renderDetail(config) {
             let detailType = detailTypeList[i]
             let td = document.createElement("td")
             if (detailType === 'N')
-                td.innerHTML = Math.round(categoryObj[detailCat][detailType] * 10) / 10
+                td.innerHTML = Math.round(categoryObj[detailCat][detailType] * 100) / 100
             else
                 td.innerHTML = categoryObj[detailCat][detailType]
             tr.appendChild(td)
@@ -279,7 +279,7 @@ function renderDetail(config) {
     detail.appendChild(table)
     detail.setAttribute("class", "container")
     document.getElementById("price-area").innerHTML = `
-        <h4>Total Price: $`+totalPrice+`</h4>
+        <h4>Total Price: $`+ Math.round(totalPrice * 100) / 100 +`</h4>
     `
 }
 
