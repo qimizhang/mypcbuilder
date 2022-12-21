@@ -169,6 +169,7 @@ async function saveConfig() {
         const index = selectElement.selectedIndex;
         savedModels[category] = selectElement.options[index].value;
     }
+    savedModels.category = cat;
 
     // console.log(savedModels);
     const token = getCookie('access-token');
