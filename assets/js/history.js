@@ -261,7 +261,10 @@ function renderDetail(config) {
             let detailCat = detailList[i]
             let detailType = detailTypeList[i]
             let td = document.createElement("td")
-            td.innerHTML = categoryObj[detailCat][detailType]
+            if (detailType === 'N')
+                td.innerHTML = Math.round(categoryObj[detailCat][detailType] * 10) / 10
+            else
+                td.innerHTML = categoryObj[detailCat][detailType]
             tr.appendChild(td)
         }
         let td = document.createElement("td")
